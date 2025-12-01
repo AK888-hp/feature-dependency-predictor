@@ -1,0 +1,24 @@
+project:
+  name: "FocusFlow Feature Dependency Predictor"
+  theme: "SaaS Project Management Tool"
+  description: "Predicts team churn and extracts retention-maximizing feature chains using HMM."
+
+data:
+  raw_path: "data/raw_events.csv"
+  processed_X_path: "data/X_sequences.pkl"
+  processed_Y_path: "data/Y_labels.pkl"
+  encoder_path: "models/feature_encoder.joblib"
+
+pipeline:
+  retention_cutoff_days: 90
+  input_sequence_days: 14
+
+model:
+  model_type: "HMM"
+  hmm_hidden_states: 4      
+  n_init: 5                 
+  max_iter: 100
+
+analysis:
+  graph_probability_threshold: 0.65
+  graph_output_path: "artifacts/dependency_graph.png"
